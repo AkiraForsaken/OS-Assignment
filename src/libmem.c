@@ -175,6 +175,15 @@ int liballoc(struct pcb_t *proc, uint32_t size, uint32_t reg_index)
   return result;
 }
 
+// TEST:
+// int liballoc(struct pcb_t *proc, uint32_t size, uint32_t reg_index)
+// {
+//     int addr;
+
+//     /* By default using vmaid = 0 */
+//     return __alloc(proc, 0, reg_index, size, &addr);
+// }
+
 /*libfree - PAGING-based free a region memory
  *@proc: Process executing the instruction
  *@size: allocated size
@@ -304,7 +313,7 @@ int pg_setval(struct mm_struct *mm, int addr, BYTE value, struct pcb_t *caller)
 
   /* Write the value to physical memory */
   if (MEMPHY_write(caller->mram, phyaddr, value) != 0)
-    return -1; /* Failed to write to memory */
+  return -1; /* Failed to write to memory */
 
   return 0; // Success
 }
@@ -342,7 +351,7 @@ int libread(
 
   /* TODO update result of reading action*/
   //destination 
-  *destination = data;
+  *destination = data; // VERY IMPORTANT
 
 #ifdef IODUMP
   printf("read region=%d offset=%d value=%d\n", source, offset, data);

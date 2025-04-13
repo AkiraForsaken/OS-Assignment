@@ -19,6 +19,7 @@ struct pgn_t{
  *  Memory region struct
  */
 struct vm_rg_struct {
+   int vmaid; //ADDED: 0 data seg, 1 heap seg
    unsigned long rg_start;
    unsigned long rg_end;
 
